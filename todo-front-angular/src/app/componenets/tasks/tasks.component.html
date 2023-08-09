@@ -1,0 +1,18 @@
+
+
+<div class="registration-form" >
+    <!-- Form for creating a new task -->
+    <h3>Add New Task</h3>
+    <form  (ngSubmit)="createTask()">
+        <label for="taskname">Task name:</label>
+        <input type="text" name="taskname" class="styled-input" [(ngModel)]="title" required>
+        <br>
+        <label for="taskdescription">Description:</label>
+        <textarea type="text" name="taskdescription" class="styled-textarea" [(ngModel)]="description"
+            required></textarea>
+        <br>
+        <div class="form-buttons">
+            <button class="styled-button" type="submit">Submit</button>
+        </div>
+    </form>
+</div>

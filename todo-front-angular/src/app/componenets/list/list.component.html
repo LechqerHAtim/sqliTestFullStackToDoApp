@@ -1,0 +1,31 @@
+<button class="button" (click)="openCreateTaskDialog()">ADD Task</button>
+
+
+
+<div class="card-container">
+    <!-- Display tasks using Material Card components -->
+    <div class="col-md-4" *ngFor="let item of taskList; let i = index">
+        <mat-card class="custom-card">
+            <mat-card-header>
+                <div class="header-line" [style.background-color]="getColor(i)"></div>
+                <mat-card-title style="margin-bottom: 30px;">{{ item.title }}</mat-card-title>
+            </mat-card-header>
+            <br>
+            <mat-card-content style="margin-bottom: 20px;">
+                {{ item.description }}
+            </mat-card-content>
+
+            <mat-card-actions>
+                <!-- Edit and delete buttons -->
+                <button mat-icon-button class="icon-button" (click)="openEditTaskDialog(item.id)">
+                    <mat-icon class="edit-icon" [style.color]="getColor(i)">edit</mat-icon>
+                </button>
+
+                
+                <button mat-icon-button class="icon-button" (click)="deleteTask(item.id)">
+                    <mat-icon class="delete-icon" [style.color]="getColor(i)">delete</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

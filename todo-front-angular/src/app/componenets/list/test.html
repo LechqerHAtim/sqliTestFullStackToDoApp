@@ -1,0 +1,43 @@
+<button class="button" (click)="showRegistrationForm = true">ADD Task</button>
+
+<div class="registration-form" *ngIf="showRegistrationForm">
+    <!-- Form for creating a new task -->
+    <h3>Add New Task</h3>
+    <form class="styled-form" (ngSubmit)="createTask()">
+        <label for="taskname">Task name:</label>
+        <input type="text" name="taskname" class="styled-input" [(ngModel)]="newTask.title" required>
+        <br>
+        <label for="taskdescription">Description:</label>
+        <textarea type="text" name="taskdescription" class="styled-textarea" [(ngModel)]="newTask.description" required></textarea>
+        <br>
+        <div class="form-buttons">
+            <button class="styled-button" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+<div class="card-container">
+    <!-- Display tasks using Material Card components -->
+    <div class="col-md-4" *ngFor="let item of taskList; let i = index">
+        <mat-card class="custom-card">
+            <mat-card-header>
+                <div class="header-line" [style.background-color]="getColor(i)"></div>
+                <mat-card-title style="margin-bottom: 30px;">{{ item.title }}</mat-card-title>
+            </mat-card-header>
+            <br>
+            <mat-card-content style="margin-bottom: 20px;">
+                {{ item.description }}
+            </mat-card-content>
+
+            <mat-card-actions>
+                <!-- Edit and delete buttons -->
+                <button mat-icon-button class="icon-button" (click)="editTask(item.id)">
+                    <mat-icon class="edit-icon" [style.color]="getColor(i)">edit</mat-icon>
+                </button>
+                <button mat-icon-button class="icon-button" (click)="deleteTask(item.id)">
+                    <mat-icon class="delete-icon" [style.color]="getColor(i)">delete</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
